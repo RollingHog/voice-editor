@@ -1,0 +1,28 @@
+<HTML>
+  <HEAD>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8" />
+    <TITLE>Voice editor</TITLE>
+  </HEAD>
+  <script>
+  </script>
+  
+  <style>
+  </style>
+  
+  <body class=" w3-padding" style="overflow:auto">
+  
+    <span id="led" style="display:inline-block; height: 25px; width: 25px; border-radius: 50%; background-color:grey;"></span>
+    <button onclick="recognition.start()">Start</button>
+    
+    <br>
+    <br>
+    
+    <textarea id="text_input" class="w3-text" style="width:60%; height: 10eh">
+    </textarea>
+    
+    <pre id=instructions>
+    </pre>
+  </body>
+  
+  <script src="index.js"></script>
+</HTML>
