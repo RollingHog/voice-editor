@@ -1,3 +1,8 @@
+window.onbeforeunload = function(e){
+  if(text_input.value)
+    return true
+}
+
 try {
   var recognition = new webkitSpeechRecognition();
   recognition.lang = 'ru'
@@ -55,7 +60,10 @@ function checkForCommands(str) {
   
   var list = [
     ["удалить последнее слово", removeLastWord],
+    ["удалить три последних слова", removeLast3Words],
+    ["удалить последнее предложение", removeLastSentence],
     ["удалить последний блок", removeLastBlock],
+    ["удалить всё", removeAll],
   ]
   
   for (let i of list) {
@@ -76,10 +84,28 @@ function removeLastWord() {
   text_input.value = text_input.value.substring(0, lastIndex);
 }
 
+function removeLast3Words() {
+  removeLastWord()
+  removeLastWord()
+  removeLastWord()
+}
+
+function removeLastSentence() {
+  var arr = text_input.value.match(/[А-Я]/g)
+  var lastIndex = text_input.value.lastIndexOf(arr[arr.length]);
+  text_input.value = text_input.value.substring(0, lastIndex);
+}
+
 function removeLastBlock() {
   //ha
 }
 
+
+
+function removeAll() {
+  text_input.value = ''
+}
+
 function addToInput(str) {
-  text_input.value += ' '+transcript
+  text_input.value += transcript
 }
