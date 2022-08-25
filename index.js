@@ -1,6 +1,8 @@
 const VERSION = '1.0.0'
 
-const getEl = document.getElementById
+function getEl(str) {
+  return document.getElementById(str)
+}
 
 try {
   getEl('version_el').innerHTML = VERSION
