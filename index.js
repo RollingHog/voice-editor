@@ -64,6 +64,9 @@ function checkForCommands(str) {
     ["удалить последнее предложение", removeLastSentence],
     ["удалить последний блок", removeLastBlock],
     ["удалить всё", removeAll],
+    
+    ["следующая строка", nextLine],
+    ["новая строка", nextLine],
   ]
   
   for (let i of list) {
@@ -100,10 +103,12 @@ function removeLastBlock() {
   //ha
 }
 
-
-
 function removeAll() {
   text_input.value = ''
+}
+
+function nextLine() {
+  text_input.value += '\n'
 }
 
 function addToInput(str) {
