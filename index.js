@@ -34,7 +34,7 @@ recognition.onstart = function () {
 }
 
 recognition.onspeechend = function () {
-  recog_status.innerText = 'Recognition off (no sound timeout)'
+  recog_status.innerText = 'Recognition off'
 }
 
 recognition.onerror = function (event) {
@@ -67,6 +67,10 @@ function checkForCommands(str) {
     
     ["следующая строка", nextLine],
     ["новая строка", nextLine],
+
+    ["прекратить распознание", recognition.stop],
+
+    ["нормализовать согласно первой схеме", normalizeWithFirstScheme],
   ]
   
   for (let i of list) {
@@ -109,6 +113,29 @@ function removeAll() {
 
 function nextLine() {
   text_input.value += '\n'
+}
+
+function normalizeWithFirstScheme() {
+  var a = text_input.value
+    .split('\n')
+    .map( e => e.trim())
+
+  for(let i in a) {
+    if( isNaN(a[i].charAt(0)) ) {
+      // it does not start with date
+      a[i] = '0.00 ' + a[i] 
+    }
+
+    a[i] = a[i]
+      .replace(/ \(представитель/, '\(представитель')
+      .replace(/2:00/, ' 2 часа,')
+      .replaceAll(/(\d) (\d)/g, '$1$2')
+      .replace(/^([^ ]+) ([^ ]+ [^ ]+) ([^ ]+) /, '$1\t$2\t$3\t')
+      .replace(/\(представитель/, ' \(представитель')
+      .replace(/\t(\+7|8)/, '\t7')
+  }
+
+  text_input.value = a.join('\n')
 }
 
 function addToInput(str) {
