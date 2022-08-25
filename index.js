@@ -14,7 +14,7 @@ window.onbeforeunload = function(_){
 }
 
 try {
-  var recognition = new webkitSpeechRecognition()
+  var recognition = new window.webkitSpeechRecognition()
   recognition.lang = 'ru'
   recognition.continuous = true
 
