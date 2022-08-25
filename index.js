@@ -1,3 +1,9 @@
+const VERSION = '1.0.0'
+
+try {
+  version_el.innerHTML = VERSION
+} catch (error) {}
+
 window.onbeforeunload = function(e){
   if(text_input.value)
     return true
