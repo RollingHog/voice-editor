@@ -63,7 +63,7 @@ var commandsList = [
   // ["удалить последний блок", removeLastBlock],
   ["удалить всё", removeAll],
 
-  // ["следующая строка", nextLine],
+  ["следующая строка", nextLine],
   ["новая строка", nextLine],
 
   ["прекратить распознание", stopRecognition],
