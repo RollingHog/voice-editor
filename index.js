@@ -1,4 +1,4 @@
-const VERSION = '1.1.0'
+const VERSION = '1.1.1'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -132,7 +132,7 @@ function normalizeWithFirstScheme() {
     }
 
     a[i] = a[i]
-      .replace(/ +\(?представитель/, '(представитель')
+      .replace(/ +\(?представитель\)?/, '(представитель)')
       .replace(/2:00/, ' 2 часа,')
       .replaceAll(/(\d)-(\d)/g, '$1$2')
       .replaceAll(/(\d) (\d)/g, '$1$2')
