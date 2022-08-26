@@ -151,7 +151,7 @@ function addToInput(str) {
 
 function init() {
   document.getElementById('commands_list').innerHTML =
-    '<li>' + commandsList.map(e => e[0]).join('</li><li>') + '</li>'
+    commandsList.map(e => `<li onclick="${e[1].name}()">${e[0]}</li>`).join('\n')
 }
 
 window.addEventListener('load', init)
