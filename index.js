@@ -1,4 +1,4 @@
-const VERSION = '1.1.2'
+const VERSION = '1.1.3'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -34,12 +34,13 @@ recognition.onresult = function (event) {
 }
 
 recognition.onstart = function () {
-  getEl('recog_status').innerText = 'Recognition on'
+  // getEl('recog_status').innerText = 'Recognition on'
   getEl('b_switch_recognition').style.backgroundColor = 'red'
 }
 
 recognition.onspeechend = function () {
-  getEl('recog_status').innerText = 'Recognition off'
+  // getEl('recog_status').innerText = 'Recognition off'
+  getEl('b_switch_recognition').style.backgroundColor = ''
 }
 
 recognition.onerror = function (_) {
