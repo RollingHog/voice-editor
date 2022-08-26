@@ -1,4 +1,4 @@
-const VERSION = '1.0.0'
+const VERSION = '1.1.0'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -7,11 +7,6 @@ function getEl(str) {
 try {
   getEl('version_el').innerHTML = VERSION
 } catch (error) {}
-
-window.onbeforeunload = function(_){
-  if(getEl('text_input').value)
-    return true
-}
 
 try {
   var recognition = new window.webkitSpeechRecognition()
@@ -68,10 +63,10 @@ var commandsList = [
   // ["удалить последний блок", removeLastBlock],
   ["удалить всё", removeAll],
 
-  ["следующая строка", nextLine],
+  // ["следующая строка", nextLine],
   ["новая строка", nextLine],
 
-  ["прекратить распознание", recognition.stop],
+  ["прекратить распознание", stopRecognition],
 
   ["нормализовать согласно первой схеме", normalizeWithFirstScheme],
 ]
@@ -121,6 +116,10 @@ function nextLine() {
   getEl('text_input').value += '\n'
 }
 
+function stopRecognition() {
+  recognition.stop()
+}
+
 function normalizeWithFirstScheme() {
   var a = getEl('text_input').value
     .split('\n')
@@ -155,3 +154,8 @@ function init() {
 }
 
 window.addEventListener('load', init)
+
+window.onbeforeunload = function(_){
+  if(getEl('text_input').value)
+    return true
+}
