@@ -20,10 +20,27 @@
     <textarea id="text_input" class="w3-text" style="width:60%;" rows=20>
     </textarea>
     
-    <pre id=recog_status>
-    </pre>
+    <!-- <pre id=recog_status></pre> -->
+
+    <div style="width: 30%;">
+      Список доступных команд
+      <style>
+        #commands_list li {
+          cursor:pointer; 
+          text-decoration: underline;
+        }
+        #commands_list li:hover {
+          background-color: lightgrey;
+        }
+      </style>
+      <ul id="commands_list">
+      </ul>
+    </div>
     
-    <a href="https://github.com/RollingHog/voice-editor" style="position: absolute; right: 16px; bottom: 16px;">https://github.com/RollingHog/voice-editor</a>
+    <div style="position: absolute; right: 16px; bottom: 16px;">
+      <div>Version <span id="version_el">_._._</span></div>
+      <a href="https://github.com/RollingHog/voice-editor">https://github.com/RollingHog/voice-editor</a>
+    </div> 
   </body>
   
   <script src="index.js"></script>
