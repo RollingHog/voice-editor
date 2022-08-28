@@ -67,7 +67,7 @@ var commandsList = [
   ["следующая строка", nextLine],
   ["новая строка", nextLine],
 
-  // ["продублировать последнюю строку", null],
+  ["продублировать последнюю строку", duplicateLastLine],
 
   ["прекратить распознание", stopRecognition],
 
@@ -122,6 +122,14 @@ function removeAll() {
 
 function nextLine() {
   getEl('text_input').value += '\n'
+}
+
+function duplicateLastLine() {
+  let str = getEl('text_input').value
+  if(str.endsWith('\n')) {
+    str = getEl('text_input').value = str.slice(0,-1)
+  }
+  getEl('text_input').value += str.substring(str.lastIndexOf('\n'))
 }
 
 function stopRecognition() {
