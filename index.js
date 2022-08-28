@@ -61,11 +61,13 @@ var commandsList = [
   ["удалить последнее слово", removeLastWord],
   ["удалить три последних слова", removeLast3Words],
   ["удалить последнее предложение", removeLastSentence],
-  // ["удалить последний блок", removeLastBlock],
+  ["удалить последнюю строку", removeLastLine],
   ["удалить всё", removeAll],
 
   ["следующая строка", nextLine],
   ["новая строка", nextLine],
+
+  // ["продублировать последнюю строку", null],
 
   ["прекратить распознание", stopRecognition],
 
@@ -107,6 +109,11 @@ function removeLastSentence() {
   var arr = getEl('text_input').value.match(/[А-Я]/g)
   var lastIndex = getEl('text_input').value.lastIndexOf(arr[arr.length])
   getEl('text_input').value = getEl('text_input').value.substring(0, lastIndex)
+}
+
+function removeLastLine() {
+  const str = getEl('text_input').value
+  getEl('text_input').value = str.substring(0, str.lastIndexOf('\n'))
 }
 
 function removeAll() {
