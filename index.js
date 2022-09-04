@@ -1,4 +1,4 @@
-const VERSION = '1.1.4'
+const VERSION = '1.2.1'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -61,11 +61,13 @@ var commandsList = [
   ["удалить последнее слово", removeLastWord],
   ["удалить три последних слова", removeLast3Words],
   ["удалить последнее предложение", removeLastSentence],
-  // ["удалить последний блок", removeLastBlock],
+  ["удалить последнюю строку", removeLastLine],
   ["удалить всё", removeAll],
 
   ["следующая строка", nextLine],
   ["новая строка", nextLine],
+
+  ["продублировать последнюю строку", duplicateLastLine],
 
   ["прекратить распознание", stopRecognition],
 
@@ -109,12 +111,25 @@ function removeLastSentence() {
   getEl('text_input').value = getEl('text_input').value.substring(0, lastIndex)
 }
 
+function removeLastLine() {
+  const str = getEl('text_input').value
+  getEl('text_input').value = str.substring(0, str.lastIndexOf('\n'))
+}
+
 function removeAll() {
   getEl('text_input').value = ''
 }
 
 function nextLine() {
   getEl('text_input').value += '\n'
+}
+
+function duplicateLastLine() {
+  let str = getEl('text_input').value
+  if(str.endsWith('\n')) {
+    str = getEl('text_input').value = str.slice(0,-1)
+  }
+  getEl('text_input').value += str.substring(str.lastIndexOf('\n'))
 }
 
 function stopRecognition() {
