@@ -1,4 +1,4 @@
-const VERSION = '1.1.3'
+const VERSION = '1.1.4'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -127,10 +127,6 @@ function normalizeWithFirstScheme() {
     .map( e => e.trim())
 
   for(let i in a) {
-    if( isNaN(a[i].charAt(0)) ) {
-      // it does not start with date
-      a[i] = '0.00 ' + a[i]
-    }
 
     a[i] = a[i]
       .replace(/ +\(?представитель\)?/, '(представитель)')
