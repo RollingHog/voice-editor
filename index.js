@@ -192,7 +192,7 @@ function checkHotkeys(e) {
       switchRecognition()
       setTimeout(_ => addToInput('\n'), 100)
       break
-    case 'Equal':
+    case 'Digit0':
       if(!e.ctrlKey) return
       normalizeWithFirstScheme()
       break
