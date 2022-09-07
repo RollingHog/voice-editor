@@ -1,4 +1,4 @@
-const VERSION = '1.3.3'
+const VERSION = '1.3.4'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -54,9 +54,11 @@ function switchRecognition() {
   try {
     recognition.start()
     getEl('b_switch_recognition').style.backgroundColor = 'red'
+    return 'start'
   } catch (e) {
     recognition.stop()
     getEl('b_switch_recognition').style.backgroundColor = ''
+    return 'end'
   }
 }
 
@@ -189,8 +191,9 @@ function checkHotkeys(e) {
   // console.log(e)
   switch (e.code) {
     case 'ControlRight':
-      switchRecognition()
-      setTimeout(_ => addToInput('\n'), 100)
+      if(switchRecognition() == 'end') {
+        setTimeout(_ => addToInput('\n'), 100)
+      }
       break
     case 'Digit0':
       if(!e.ctrlKey) return
@@ -200,6 +203,7 @@ function checkHotkeys(e) {
       return true
   }
 
+  e.preventDefault()
   e.stopPropagation()
   return false
 }
