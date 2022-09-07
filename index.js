@@ -1,4 +1,4 @@
-const VERSION = '1.2.2'
+const VERSION = '1.3.0'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -29,6 +29,9 @@ recognition.onresult = function (event) {
   if(checkForCommands(transcript)) {
     return
   }
+
+  transcript = checkForAbbreviations(transcript)
+
   addToInput(transcript)
 
 }
@@ -71,7 +74,7 @@ var commandsList = [
 
   ["прекратить распознание", stopRecognition],
 
-  ["нормализовать согласно первой схеме", normalizeWithFirstScheme],
+  ["нормализовать", normalizeWithFirstScheme],
 ]
 
 function checkForCommands(str) {
@@ -144,6 +147,7 @@ function normalizeWithFirstScheme() {
   for(let i in a) {
 
     a[i] = a[i]
+      .replace(/  +/g, ' ')
       .replace(/ +\(?представитель\)?/, '(представитель)')
       .replace(/2:00/, ' 2 часа,')
       .replaceAll(/(\d)-(\d)/g, '$1$2')
@@ -154,6 +158,22 @@ function normalizeWithFirstScheme() {
   }
 
   getEl('text_input').value = a.join('\n')
+}
+
+const abbrList = [
+  ["кроссов(ок|ка)", "кросс"],
+  ["петух", "пит"],
+  ["венера", "КВД"],
+  ["танк", "КВВ"],
+]
+
+function checkForAbbreviations(str) {
+
+  for (let i of abbrList) {
+    str = str.replace(new RegExp(i[0], 'gi'), i[1])
+  }
+
+  return str
 }
 
 function addToInput(str) {
