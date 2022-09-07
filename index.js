@@ -1,4 +1,4 @@
-const VERSION = '1.4.1'
+const VERSION = '1.4.2'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -136,7 +136,7 @@ function duplicateLastLine() {
   if(str.endsWith('\n')) {
     str = getEl('text_input').value = str.slice(0,-1)
   }
-  getEl('text_input').value += str.substring(str.lastIndexOf('\n'))
+  getEl('text_input').value += str.substring(str.lastIndexOf('\n')) + '\n'
 }
 
 function stopRecognition() {
