@@ -186,10 +186,15 @@ function init() {
 }
 
 function checkHotkeys(e) {
+  // console.log(e)
   switch (e.code) {
     case 'ControlRight':
       switchRecognition()
-      setTimeout(_ => addToInput('\n'), 0)
+      setTimeout(_ => addToInput('\n'), 100)
+      break
+    case 'Equal':
+      if(!e.ctrlKey) return
+      normalizeWithFirstScheme()
       break
     default:
       return true
