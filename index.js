@@ -1,4 +1,4 @@
-const VERSION = '1.3.2'
+const VERSION = '1.3.3'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -187,8 +187,7 @@ function init() {
 
 function checkHotkeys(e) {
   switch (e.code) {
-    case 'ControlLeft':
-      switchRecognition()
+    case 'ControlRight':
       switchRecognition()
       setTimeout(_ => addToInput('\n'), 0)
       break
