@@ -1,4 +1,4 @@
-const VERSION = '1.4.0'
+const VERSION = '1.4.1'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -194,6 +194,7 @@ function checkHotkeys(e) {
   // console.log(e)
   switch (e.code) {
     case 'ControlRight':
+      switchRecognition()
       break
     case 'Digit0':
       if(!e.ctrlKey) return
