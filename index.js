@@ -1,4 +1,4 @@
-const VERSION = '1.3.1'
+const VERSION = '1.3.2'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -185,7 +185,24 @@ function init() {
     commandsList.map(e => `<li onclick="${e[1].name}()">${e[0]}</li>`).join('\n')
 }
 
+function checkHotkeys(e) {
+  switch (e.code) {
+    case 'ControlLeft':
+      switchRecognition()
+      switchRecognition()
+      setTimeout(_ => addToInput('\n'), 0)
+      break
+    default:
+      return true
+  }
+
+  e.stopPropagation()
+  return false
+}
+
 window.addEventListener('load', init)
+
+window.addEventListener('keydown', checkHotkeys, true)
 
 window.onbeforeunload = function(_){
   if(getEl('text_input').value)
