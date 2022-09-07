@@ -1,4 +1,4 @@
-const VERSION = '1.3.4'
+const VERSION = '1.3.5'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -198,6 +198,10 @@ function checkHotkeys(e) {
     case 'Digit0':
       if(!e.ctrlKey) return
       normalizeWithFirstScheme()
+      break
+    case 'KeyD':
+      if(!e.ctrlKey) return
+      duplicateLastLine()
       break
     default:
       return true
