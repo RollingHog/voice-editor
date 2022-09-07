@@ -143,6 +143,7 @@ function stopRecognition() {
 
 function normalizeWithFirstScheme() {
   var a = getEl('text_input').value
+    .trim()
     .split('\n')
     .map( e => e.trim())
 
