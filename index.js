@@ -1,4 +1,4 @@
-const VERSION = '1.3.5'
+const VERSION = '1.4.0'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -31,6 +31,8 @@ recognition.onresult = function (event) {
   }
 
   transcript = checkForAbbreviations(transcript)
+
+  if(getEl('inp_add_newline').checked) transcript += '\n'
 
   addToInput(transcript)
 
@@ -192,9 +194,6 @@ function checkHotkeys(e) {
   // console.log(e)
   switch (e.code) {
     case 'ControlRight':
-      if(switchRecognition() == 'end') {
-        setTimeout(_ => addToInput('\n'), 100)
-      }
       break
     case 'Digit0':
       if(!e.ctrlKey) return
