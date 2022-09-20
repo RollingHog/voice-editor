@@ -23,9 +23,11 @@
     
     <textarea id="text_input" class="w3-text" style="width:60%;" rows=20></textarea>
 
-    <input type="text" style="width: 30%;  vertical-align: top;" 
-      onchange="text_input.value += ' '+checkForAbbreviations(this.value)+'\n'; text_input.focus(); this.value=''"
-    >
+    <div style="width: 30%; vertical-align: top; display: inline-block;">
+      <input type="text" style="width: 100%;" 
+        onchange="text_input.value += ' '+checkForAbbreviations(this.value)+'\n'; text_input.focus(); this.value=''"
+      >
+    </div>
     
     <!-- <pre id=recog_status></pre> -->
 
