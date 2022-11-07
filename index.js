@@ -32,6 +32,7 @@ recognition.onresult = function (event) {
 
   transcript = checkForAbbreviations(transcript)
 
+  if(getEl('inp_add_space').checked) transcript += ' '
   if(getEl('inp_add_newline').checked) transcript += '\n'
 
   addToInput(transcript)
