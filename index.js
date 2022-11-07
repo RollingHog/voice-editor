@@ -1,4 +1,4 @@
-const VERSION = '1.5.1'
+const VERSION = '1.6.0'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -17,6 +17,22 @@ try {
 } catch (e) {
   console.error(e)
   alert('SpeechRecognition failed')
+}
+
+const textarea = {
+  /**
+   * @param {string} str
+   */
+  set adder(str) {
+    getEl('text_input').value += str
+  },
+
+  /**
+   * @param {string} str
+   */
+  set setter(str) {
+    getEl('text_input').value = str
+  },
 }
 
 var transcript
@@ -106,7 +122,7 @@ function checkForCommands(str) {
 
 function removeLastWord() {
   var lastIndex = getEl('text_input').value.lastIndexOf(" ")
-  getEl('text_input').value = getEl('text_input').value.substring(0, lastIndex)
+  textarea.setter = getEl('text_input').value.substring(0, lastIndex)
 }
 
 function removeLast3Words() {
@@ -118,29 +134,28 @@ function removeLast3Words() {
 function removeLastSentence() {
   var arr = getEl('text_input').value.match(/[А-Я]/g)
   var lastIndex = getEl('text_input').value.lastIndexOf(arr[arr.length])
-  getEl('text_input').value = getEl('text_input').value.substring(0, lastIndex)
+  textarea.setter = getEl('text_input').value.substring(0, lastIndex)
 }
 
 function removeLastLine() {
   const str = getEl('text_input').value
-  getEl('text_input').value = str.substring(0, str.lastIndexOf('\n'))
+  textarea.setter = str.substring(0, str.lastIndexOf('\n'))
 }
 
 function removeAll() {
-  console.log(1)
-  getEl('text_input').value = ''
+  textarea.setter = ''
 }
 
 function nextLine() {
-  getEl('text_input').value += '\n'
+  textarea.adder = '\n'
 }
 
 function duplicateLastLine() {
   let str = getEl('text_input').value
   if(str.endsWith('\n')) {
-    str = getEl('text_input').value = str.slice(0,-1)
+    str = textarea.setter = str.slice(0,-1)
   }
-  getEl('text_input').value += str.substring(str.lastIndexOf('\n')) + '\n'
+  textarea.adder = str.substring(str.lastIndexOf('\n')) + '\n'
 }
 
 function stopRecognition() {
@@ -166,11 +181,11 @@ function normalizeWithFirstScheme() {
       .replace(/\t(\+7|8)/, '\t7')
   }
 
-  getEl('text_input').value = a.join('\n')
+  textarea.setter = a.join('\n')
 }
 
 function fixTypography() {
-  getEl('text_input').value = getEl('text_input').value
+  textarea.setter = getEl('text_input').value
     .replace(/ ([,.!?])/g, '$1')
     .replace(/([,.!?])([^ .!])/g, '$1 $2')
     .replace(/([.!?]) ([а-я])/g, function(match) { return match.toUpperCase() })
@@ -194,7 +209,7 @@ function checkForAbbreviations(str) {
 }
 
 function addToInput(str) {
-  getEl('text_input').value += str
+  textarea.adder = str
 }
 
 function init() {
