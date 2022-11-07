@@ -27,6 +27,10 @@
       padding:8px;
     }
 
+    button#b_clear {
+      float: right;
+    }
+
     button#b_dummy {
       display: none;
     }
@@ -72,10 +76,16 @@
 
       button#b_dummy,
       button#b_clear {
-        display: block;
+        display: inline;
         height:12vh;
         width: 12vh;
         border-radius:10vh;
+      }
+
+      button#b_clear {
+        float: none;
+        margin-left: 5vw;
+        margin-right: -5vw;
       }
 
       div#sideblock_wrapper {
@@ -130,9 +140,9 @@
 
     <br>
     <div id="main_buttons_wrapper">
-      <button id=b_dummy style="float: left; visibility: hidden;">Dummy</button>
+      <button id=b_dummy style="visibility: hidden;">Dummy</button>
       <button id=b_switch_recognition>Start</button>
-      <button id=b_clear style="float: right;">Clear</button>
+      <button id=b_clear>Clear</button>
     </div>
     
     <!-- <pre id=recog_status></pre> -->
