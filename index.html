@@ -11,31 +11,41 @@
     body {
       overscroll-behavior-y: contain;
     }
+
+    #text_input {
+      width:60%;
+    }
+
+    #b_switch_recognition {
+      padding:8px;
+      height:3rem;
+      border-radius:3rem;
+    }
   </style>
   
-  <body class=" w3-padding" style="overflow:auto">
+  <body style="overflow:auto">
   
     <!-- <span id="led" style="display:inline-block; height: 25px; width: 25px; border-radius: 50%; background-color:grey;"></span> -->
-    <button id=b_switch_recognition style="padding:8px">Start</button>
-    <label for="inp_add_newline" style="float: right;">
-      <input type="checkbox" name="inp_add_newline" id="inp_add_newline">
-      Добавлять \n в конце распознания
-    </label>
     
-    <br>
-    <br>
-    
-    <textarea id="text_input" class="w3-text" style="width:60%;" rows=20></textarea>
+    <textarea id="text_input" rows=20></textarea>
 
-    <div style="width: 30%; vertical-align: top; display: inline-block;">
+    <div id="sideblock_wrapper" style="width: 30%; vertical-align: top; display: inline-block;">
+      <label for="inp_add_newline">
+        <input type="checkbox" name="inp_add_newline" id="inp_add_newline">
+        Добавлять \n в конце распознания
+      </label>
+
       <input type="text" style="width: 100%;" 
         onchange="text_input.value += ' '+checkForAbbreviations(this.value)+'\n'; text_input.focus(); this.value=''"
       >
     </div>
+
+    <br>
+    <button id=b_switch_recognition>Start</button>
     
     <!-- <pre id=recog_status></pre> -->
 
-    <div style="width: 30%;">
+    <div id=commands_list_wrapper style="width: 30%;">
       Список доступных команд
       <style>
         #commands_list li {
