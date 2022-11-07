@@ -30,6 +30,12 @@
       vertical-align: top; 
     }
 
+    #version_el_wrapper {
+      position: absolute; 
+      right: 16px;
+      bottom: 16px;
+    }
+
     @media screen and (max-width: 800px) {
       textarea#text_input {
         width:100%;
@@ -51,6 +57,10 @@
         width: 100%;
       }
 
+      #version_el_wrapper {
+        position: static;
+        float: right; 
+      }
     }
   </style>
   
@@ -97,7 +107,7 @@
       </ul>
     </div>
     
-    <div style="position: absolute; right: 16px; bottom: 16px;">
+    <div id=version_el_wrapper>
       <div>Version <span id="version_el">_._._</span></div>
       <a href="https://github.com/RollingHog/voice-editor">https://github.com/RollingHog/voice-editor</a>
     </div> 
