@@ -65,10 +65,19 @@
         width: 100%;
       }
 
+      #side_text_input {
+        display: none;
+      }
+
       #commands_list_wrapper {
         width: 100%;
         margin-top: 1.5em;
-        line-height: 2;
+      }
+
+      #commands_list li {
+        border-top: 1px solid black;
+        padding-top: 1em;
+        padding-bottom: 1em;
       }
 
       #version_el_wrapper {
@@ -96,7 +105,7 @@
         пробел
       </label>
 
-      <input type="text" style="width: 100%;" 
+      <input id=side_text_input type="text" style="width: 100%;" 
         onchange="text_input.value += ' '+checkForAbbreviations(this.value)+'\n'; text_input.focus(); this.value=''"
       >
     </div>
