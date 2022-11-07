@@ -31,6 +31,10 @@
       vertical-align: top; 
     }
 
+    #commands_list_wrapper {
+      width: 30%;
+    }
+
     #version_el_wrapper {
       position: absolute; 
       right: 16px;
@@ -38,10 +42,13 @@
     }
 
     @media screen and (max-width: 600px) {
+      body {
+        font-size: x-large;
+      }
+
       textarea#text_input {
         width:100%;
         height: 75%;
-        font-size: xx-large;
       }
 
       button#b_switch_recognition {
@@ -56,6 +63,12 @@
       div#sideblock_wrapper {
         margin-top: 60%;
         width: 100%;
+      }
+
+      #commands_list_wrapper {
+        width: 100%;
+        margin-top: 1.5em;
+        line-height: 2;
       }
 
       #version_el_wrapper {
@@ -93,7 +106,7 @@
     
     <!-- <pre id=recog_status></pre> -->
 
-    <div id=commands_list_wrapper style="width: 30%;">
+    <div id=commands_list_wrapper>
       Список доступных команд
       <style>
         #commands_list li {
