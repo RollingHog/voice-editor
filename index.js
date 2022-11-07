@@ -66,6 +66,8 @@ function switchRecognition() {
 }
 
 var commandsList = [
+  ["исправить типографию", fixTypography],
+
   ["удалить последнее слово", removeLastWord],
   ["удалить три последних слова", removeLast3Words],
   ["удалить последнее предложение", removeLastSentence],
@@ -80,8 +82,6 @@ var commandsList = [
   ["прекратить распознание", stopRecognition],
 
   ["нормализовать", normalizeWithFirstScheme],
-
-  ["исправить типографию", fixTypography],
 ]
 
 function checkForCommands(str) {
