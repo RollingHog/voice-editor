@@ -1,4 +1,4 @@
-const VERSION = '1.4.2'
+const VERSION = '1.5.0'
 
 function getEl(str) {
   return document.getElementById(str)
