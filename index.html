@@ -12,14 +12,42 @@
       overscroll-behavior-y: contain;
     }
 
-    #text_input {
+    textarea#text_input {
       width:60%;
+      height: 50%;
+      font-size: inherit;
     }
 
-    #b_switch_recognition {
+    button#b_switch_recognition {
       padding:8px;
       height:3rem;
       border-radius:3rem;
+    }
+
+    div#sideblock_wrapper {
+      display: inline-block;
+      width: 30%; 
+      vertical-align: top; 
+    }
+
+    @media screen and (max-width: 800px) {
+      textarea#text_input {
+        width:100%;
+        height: 75%;
+        font-size: xx-large;
+      }
+
+      button#b_switch_recognition {
+        padding:8px;
+        height:3rem;
+        border-radius:3rem;
+      }
+
+      div#sideblock_wrapper {
+        margin-top: 30%;
+        width: 100%;
+      }
+
     }
   </style>
   
@@ -29,7 +57,7 @@
     
     <textarea id="text_input" rows=20></textarea>
 
-    <div id="sideblock_wrapper" style="width: 30%; vertical-align: top; display: inline-block;">
+    <div id="sideblock_wrapper" >
       Добавлять в конце распознания:
       <br>
       <label for="inp_add_newline">
