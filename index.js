@@ -80,6 +80,8 @@ var commandsList = [
   ["прекратить распознание", stopRecognition],
 
   ["нормализовать", normalizeWithFirstScheme],
+
+  ["исправить типографию", fixTypography],
 ]
 
 function checkForCommands(str) {
@@ -164,6 +166,14 @@ function normalizeWithFirstScheme() {
   }
 
   getEl('text_input').value = a.join('\n')
+}
+
+function fixTypography() {
+  getEl('text_input').value = getEl('text_input').value
+    .replace(/ ([,.!?])/g, '$1')
+    .replace(/([,.!?])([^ .!])/g, '$1 $2')
+    .replace(/([.!?]) ([а-я])/g, function(match) { return match.toUpperCase() })
+    .replace(/([^.!?]) ([А-Я])/g, function(match) { return match.toLowerCase() })
 }
 
 const abbrList = [
