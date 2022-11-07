@@ -1,4 +1,4 @@
-const VERSION = '1.5.0'
+const VERSION = '1.5.1'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -127,6 +127,7 @@ function removeLastLine() {
 }
 
 function removeAll() {
+  console.log(1)
   getEl('text_input').value = ''
 }
 
@@ -199,6 +200,8 @@ function addToInput(str) {
 function init() {
   document.getElementById('commands_list').innerHTML =
     commandsList.map(e => `<li onclick="${e[1].name}()">${e[0]}</li>`).join('\n')
+
+  getEl('b_clear').onclick = _ => confirm('Удалить всё?') ? removeAll() : null
 }
 
 function checkHotkeys(e) {
