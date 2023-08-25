@@ -186,6 +186,8 @@ function normalizeWithFirstScheme() {
 
 function fixTypography() {
   textarea.setter = getEl('text_input').value
+    .replace(/запятая/g, ',')
+    .replace(/точка/g, '.')
     .replace(/ ([,.!?])/g, '$1')
     .replace(/([,.!?])([^ .!])/g, '$1 $2')
     .replace(/^[а-я]/g, function(match) { return match.toUpperCase() })
