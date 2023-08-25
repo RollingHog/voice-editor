@@ -189,7 +189,8 @@ function fixTypography() {
     .replace(/ ([,.!?])/g, '$1')
     .replace(/([,.!?])([^ .!])/g, '$1 $2')
     .replace(/([.!?]) ([а-я])/g, function(match) { return match.toUpperCase() })
-    .replace(/([а-я]) ([А-Я][а-я]+)/g, function(match, _gr1, gr2) { return match.toLowerCase() })
+    .replace(/([а-я,]) ([А-Я][а-я]+)/g, function(match, _gr1, _gr2) { return match.toLowerCase() })
+    .replace(/ {2}/g, ' ')
 }
 
 const abbrList = [
