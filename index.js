@@ -6,7 +6,7 @@ function getEl(str) {
 
 try {
   getEl('version_el').innerHTML = VERSION
-} catch (error) {}
+} catch (error) { }
 
 try {
   var recognition = new window.webkitSpeechRecognition()
@@ -42,14 +42,14 @@ recognition.onresult = function (event) {
 
   transcript = event.results[current][0].transcript
 
-  if(checkForCommands(transcript)) {
+  if (checkForCommands(transcript)) {
     return
   }
 
   transcript = checkForAbbreviations(transcript)
 
-  if(getEl('inp_add_space').checked) transcript += ' '
-  if(getEl('inp_add_newline').checked) transcript += '\n'
+  if (getEl('inp_add_space').checked) transcript += ' '
+  if (getEl('inp_add_newline').checked) transcript += '\n'
 
   addToInput(transcript)
 
@@ -93,11 +93,11 @@ var commandsList = [
   ["следующая строка", nextLine],
   ["новая строка", nextLine],
 
-  ["продублировать последнюю строку", duplicateLastLine],
+  ["продублировать последнюю строку", duplicateLastLine, 'Ctrl+D'],
 
   ["прекратить распознание", stopRecognition],
 
-  ["нормализовать", normalizeWithFirstScheme],
+  ["нормализовать", normalizeWithFirstScheme, 'Alt+0'],
 ]
 
 function checkForCommands(str) {
@@ -108,8 +108,8 @@ function checkForCommands(str) {
   console.log(str)
 
   for (let i of commandsList) {
-    if( str.search(new RegExp(i[0])) == 0 ) {
-      if(i.length == 2)
+    if (str.search(new RegExp(i[0])) == 0) {
+      if (i.length == 2)
         i[1]()
       else
         i[1](i[2])
@@ -152,8 +152,8 @@ function nextLine() {
 
 function duplicateLastLine() {
   let str = getEl('text_input').value
-  if(str.endsWith('\n')) {
-    str = textarea.setter = str.slice(0,-1)
+  if (str.endsWith('\n')) {
+    str = textarea.setter = str.slice(0, -1)
   }
   textarea.adder = str.substring(str.lastIndexOf('\n')) + '\n'
 }
@@ -166,9 +166,9 @@ function normalizeWithFirstScheme() {
   var a = getEl('text_input').value
     .trim()
     .split('\n')
-    .map( e => e.trim())
+    .map(e => e.trim())
 
-  for(let i in a) {
+  for (let i in a) {
 
     a[i] = a[i]
       .replace(/  +/g, ' ')
@@ -190,9 +190,9 @@ function fixTypography() {
     .replace(/точка/g, '.')
     .replace(/ ([,.!?])/g, '$1')
     .replace(/([,.!?])([^ .!])/g, '$1 $2')
-    .replace(/^[а-я]/g, function(match) { return match.toUpperCase() })
-    .replace(/([.!?]) ([а-я])/g, function(match) { return match.toUpperCase() })
-    .replace(/([а-я,]) ([А-Я][а-я]+)/g, function(match, _gr1, _gr2) { return match.toLowerCase() })
+    .replace(/^[а-я]/g, function (match) { return match.toUpperCase() })
+    .replace(/([.!?]) ([а-я])/g, function (match) { return match.toUpperCase() })
+    .replace(/([а-я,]) ([А-Я][а-я]+)/g, function (match, _gr1, _gr2) { return match.toLowerCase() })
     .replace(/ {2}/g, ' ')
 }
 
@@ -218,7 +218,7 @@ function addToInput(str) {
 
 function init() {
   document.getElementById('commands_list').innerHTML =
-    commandsList.map(e => `<li onclick="${e[1].name}()">${e[0]}</li>`).join('\n')
+    commandsList.map(e => `<li onclick="${e[1].name}()">${e[0]}${e[2] ? `&nbsp;<kbd>${e[2]}</kbd>` : ''}</li>`).join('\n')
 
   getEl('b_clear').onclick = _ => confirm('Удалить всё?') ? removeAll() : null
 }
@@ -230,11 +230,11 @@ function checkHotkeys(e) {
       switchRecognition()
       break
     case 'Digit0':
-      if(!e.ctrlKey) return
+      if (!e.altKey) return
       normalizeWithFirstScheme()
       break
     case 'KeyD':
-      if(!e.ctrlKey) return
+      if (!e.ctrlKey) return
       duplicateLastLine()
       break
     default:
@@ -250,7 +250,7 @@ window.addEventListener('load', init)
 
 window.addEventListener('keydown', checkHotkeys, true)
 
-window.onbeforeunload = function(_){
-  if(getEl('text_input').value)
+window.onbeforeunload = function (_) {
+  if (getEl('text_input').value)
     return true
 }
