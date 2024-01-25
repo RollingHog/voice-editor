@@ -1,4 +1,4 @@
-const VERSION = '1.6.0'
+const VERSION = '1.6.1'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -82,7 +82,7 @@ function switchRecognition() {
 }
 
 var commandsList = [
-  ["исправить типографию", fixTypography],
+  ["исправить типографию", fixTypography, 'Alt+0'],
 
   ["удалить последнее слово", removeLastWord],
   ["удалить три последних слова", removeLast3Words],
@@ -97,7 +97,7 @@ var commandsList = [
 
   ["прекратить распознание", stopRecognition],
 
-  ["нормализовать", normalizeWithFirstScheme, 'Alt+0'],
+  ["нормализовать", normalizeWithFirstScheme],
 ]
 
 function checkForCommands(str) {
@@ -188,8 +188,11 @@ function fixTypography() {
   textarea.setter = getEl('text_input').value
     .replace(/запятая/g, ',')
     .replace(/точка/g, '.')
-    .replace(/ ([,.!?])/g, '$1')
-    .replace(/([,.!?])([^ .!])/g, '$1 $2')
+    .replace(/двоеточие/g, ':')
+    .replace(/(знак вопроса|вопросительный знак)/g, '?')
+    .replace(/восклицательный знак/g, '!')
+    .replace(/ ([,.!?:;])/g, '$1')
+    .replace(/([,.!?:;])([^ .!])/g, '$1 $2')
     .replace(/^[а-я]/g, function (match) { return match.toUpperCase() })
     .replace(/([.!?]) ([а-я])/g, function (match) { return match.toUpperCase() })
     .replace(/([а-я,]) ([А-Я][а-я]+)/g, function (match, _gr1, _gr2) { return match.toLowerCase() })
@@ -231,7 +234,7 @@ function checkHotkeys(e) {
       break
     case 'Digit0':
       if (!e.altKey) return
-      normalizeWithFirstScheme()
+      fixTypography()
       break
     case 'KeyD':
       if (!e.ctrlKey) return
