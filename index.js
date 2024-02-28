@@ -1,4 +1,4 @@
-const VERSION = '1.6.1'
+const VERSION = '1.6.2'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -188,10 +188,15 @@ function fixTypography() {
   textarea.setter = getEl('text_input').value
     .replace(/запятая/g, ',')
     .replace(/точка/g, '.')
+    .replace(/кавычка/g, '"')
+    .replace(/скоб(оч)?ка открывается/g, '(')
+    .replace(/скоб(оч)?ка закрывается/g, ')')
     .replace(/двоеточие/g, ':')
     .replace(/(знак вопроса|вопросительный знак)/g, '?')
     .replace(/восклицательный знак/g, '!')
-    .replace(/ ([,.!?:;])/g, '$1')
+    .replace(/ ([,.!?:;)])/g, '$1')
+    .replace(/([(]) /g, '$1')
+    .replace(/" ([^"]+) "/g, '"$1"')
     .replace(/([,.!?:;])([^ .!])/g, '$1 $2')
     .replace(/^[а-я]/g, function (match) { return match.toUpperCase() })
     .replace(/([.!?]) ([а-я])/g, function (match) { return match.toUpperCase() })
@@ -223,7 +228,12 @@ function init() {
   document.getElementById('commands_list').innerHTML =
     commandsList.map(e => `<li onclick="${e[1].name}()">${e[0]}${e[2] ? `&nbsp;<kbd>${e[2]}</kbd>` : ''}</li>`).join('\n')
 
-  getEl('b_clear').onclick = _ => confirm('Удалить всё?') ? removeAll() : null
+  getEl('b_cut').onclick = _ => {
+    fixTypography()
+    navigator.clipboard.writeText(getEl('text_input').value)
+    getEl('text_input').value = ''
+  }
+  getEl('text_input').focus()
 }
 
 function checkHotkeys(e) {
