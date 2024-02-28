@@ -230,6 +230,7 @@ function init() {
 
   getEl('b_cut').onclick = _ => {
     fixTypography()
+    fixTypography()
     navigator.clipboard.writeText(getEl('text_input').value)
     getEl('text_input').value = ''
   }
