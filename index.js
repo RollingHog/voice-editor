@@ -1,4 +1,4 @@
-const VERSION = '1.6.2'
+const VERSION = '1.6.3'
 
 function getEl(str) {
   return document.getElementById(str)
@@ -250,6 +250,10 @@ function checkHotkeys(e) {
     case 'KeyD':
       if (!e.ctrlKey) return
       duplicateLastLine()
+      break
+    case 'KeyX':
+      if (!e.altKey) return
+      getEl('b_cut').click()
       break
     default:
       return true
