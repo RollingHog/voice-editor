@@ -35,6 +35,16 @@ const textarea = {
   },
 }
 
+function doBeep() {
+  var context = new window.AudioContext()
+  var osc = context.createOscillator() // instantiate an oscillator
+  osc.type = 'sine' // this is the default - also square, sawtooth, triangle
+  osc.frequency.value = 940 // Hz
+  osc.connect(context.destination) // connect it to the destination
+  osc.start() // start the oscillator
+  osc.stop(context.currentTime + 0.15)
+}
+
 var transcript
 recognition.onresult = function (event) {
 
@@ -62,6 +72,7 @@ recognition.onstart = function () {
 
 recognition.onspeechend = function () {
   // getEl('recog_status').innerText = 'Recognition off'
+  doBeep()
   getEl('b_switch_recognition').style.backgroundColor = ''
 }
 
