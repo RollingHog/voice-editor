@@ -6,14 +6,14 @@ const APP_PREFIX = 'rh_voed_dsc'
 // The version of the cache. Every time you change any of the files
 // you need to change this version.
 // eslint-disable-next-line no-unused-vars
-const VERSION = '1.0.1'
+const VERSION = '1.0.2'
 
 // The files to make available for offline use
 // eslint-disable-next-line no-unused-vars
 const URLS = [
   `${GHP_PATH}/`,
   `${GHP_PATH}/index.html`,
-  `${GHP_PATH}/favicon.png`,
+  `${GHP_PATH}/fav144.png`,
   `${GHP_PATH}/index.js`,
 ]
 
