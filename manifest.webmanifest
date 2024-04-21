@@ -1,0 +1,22 @@
+{
+  "name": "RollingHog voice notepad",
+  "short_name": "RH VoNotes",
+  "id": "/voice-editor/",
+  "description": "Voice notepad via Google API PWA",
+ 
+  "scope":     "/voice-editor/",
+  "start_url": "/voice-editor/",
+ 
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+ 
+  "display": "fullscreen", 
+ 
+  "icons": [
+      {
+        "src": "/voice-editor/favicon.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+  ]
+}
