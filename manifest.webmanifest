@@ -16,7 +16,7 @@
       {
         "src": "/voice-editor/favicon.png",
         "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "16x16"
       }
   ]
 }
